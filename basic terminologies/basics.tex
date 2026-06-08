@@ -1,0 +1,229 @@
+\section{Introduction to Categories}
+
+\subsection{Motivation}
+
+Many areas of mathematics have the same basic pattern:
+
+\begin{itemize}
+    \item Objects (such as groups, sets, vector spaces, topological spaces).
+    \item Structure-preserving maps between those objects.
+\end{itemize}
+
+Examples:
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Objects & Structure-Preserving Maps \\
+\hline
+Sets & Functions \\
+Groups & Group Homomorphisms \\
+Vector Spaces & Linear Transformations \\
+Topological Spaces & Continuous Functions \\
+\hline
+\end{tabular}
+\end{center}
+
+Category theory studies mathematical structures through the relationships (maps) between them.
+
+\subsection{Definition of a Category}
+
+A \textbf{category} $\mathcal{C}$ consists of:
+
+\begin{enumerate}
+    \item A collection of objects.
+
+    \item For every pair of objects $A,B$, a collection of morphisms (or arrows)
+    \[
+    \operatorname{Hom}_{\mathcal C}(A,B),
+    \]
+    whose elements are written
+    \[
+    f:A\to B.
+    \]
+
+    \item A composition operation
+    \[
+    \operatorname{Hom}(A,B)\times\operatorname{Hom}(B,C)
+    \longrightarrow
+    \operatorname{Hom}(A,C),
+    \]
+    given by
+    \[
+    (f,g)\mapsto g\circ f.
+    \]
+
+    \item For every object $A$, an identity morphism
+    \[
+    1_A:A\to A.
+    \]
+\end{enumerate}
+
+These data must satisfy the following axioms.
+
+\subsection{Category Axioms}
+
+\subsubsection{Associativity}
+
+For morphisms
+\[
+A\xrightarrow{f}B\xrightarrow{g}C\xrightarrow{h}D,
+\]
+we require
+\[
+(h\circ g)\circ f
+=
+h\circ(g\circ f).
+\]
+
+\subsubsection{Identity}
+
+For every morphism
+\[
+f:A\to B,
+\]
+we have
+\[
+f\circ 1_A=f,
+\]
+and
+\[
+1_B\circ f=f.
+\]
+
+\subsection{Example: The Category \texorpdfstring{$\mathbf{Set}$}{Set}}
+
+The category $\mathbf{Set}$ has:
+
+\begin{itemize}
+    \item Objects: Sets.
+    \item Morphisms: Functions between sets.
+\end{itemize}
+
+Composition is ordinary function composition, and identity morphisms are identity functions.
+
+Therefore $\mathbf{Set}$ is a category.
+
+\subsection{Example: The Category \texorpdfstring{$\mathbf{Grp}$}{Grp}}
+
+The category $\mathbf{Grp}$ has:
+
+\begin{itemize}
+    \item Objects: Groups.
+    \item Morphisms: Group homomorphisms.
+\end{itemize}
+
+For example,
+\[
+f:\mathbb Z\to\mathbb Z_6,
+\qquad
+f(n)=n \pmod 6,
+\]
+is a group homomorphism.
+
+Composition is composition of homomorphisms, and identity morphisms are identity homomorphisms.
+
+Therefore $\mathbf{Grp}$ is a category.
+
+\subsection{Example: The Category \texorpdfstring{$\mathbf{Vect}_F$}{VectF}}
+
+The category $\mathbf{Vect}_F$ has:
+
+\begin{itemize}
+    \item Objects: Vector spaces over a field $F$.
+    \item Morphisms: Linear transformations.
+\end{itemize}
+
+Example:
+\[
+T:\mathbb R^2\to\mathbb R^2,
+\qquad
+T(x,y)=(x+y,y).
+\]
+
+Since $T$ is linear, it is a morphism in $\mathbf{Vect}_{\mathbb R}$.
+
+\subsection{Terminology}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Classical Mathematics & Category Theory \\
+\hline
+Set & Object \\
+Function & Morphism \\
+Homomorphism & Morphism \\
+Linear Transformation & Morphism \\
+Continuous Function & Morphism \\
+\hline
+\end{tabular}
+\end{center}
+
+In category theory, the term \emph{morphism} refers to the appropriate structure-preserving map.
+
+\subsection{Why Morphisms Matter}
+
+A central philosophy of category theory is:
+
+\begin{quote}
+To understand an object, study how it relates to other objects through morphisms.
+\end{quote}
+
+For example, instead of studying a group $G$ only through its internal structure, one may study collections of morphisms
+\[
+\operatorname{Hom}(G,H)
+\]
+for various groups $H$.
+
+\subsection{Diagrams}
+
+Categories are often represented using diagrams:
+
+\[
+A \xrightarrow{f} B \xrightarrow{g} C.
+\]
+
+Composition produces the morphism
+
+\[
+A \xrightarrow{g\circ f} C.
+\]
+
+Reasoning with such diagrams is fundamental in category theory.
+
+\subsection{A Small Category}
+
+Consider a category with objects
+
+\[
+\{A,B,C\}
+\]
+
+and morphisms
+
+\[
+1_A,\;1_B,\;1_C,\;f:A\to B,\;g:B\to C.
+\]
+
+Closure under composition requires the morphism
+
+\[
+g\circ f:A\to C.
+\]
+
+This forms a category.
+
+\subsection{Key Idea}
+
+A category consists of:
+
+\begin{itemize}
+    \item Objects,
+    \item Morphisms between objects,
+    \item Composition of morphisms,
+    \item Identity morphisms,
+\end{itemize}
+
+satisfying associativity and identity laws.
+
+The primary focus is not the objects themselves, but the network of morphisms connecting them.
