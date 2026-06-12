@@ -1,0 +1,335 @@
+\section{Grothendieck Categories}
+
+\subsection{Definition}
+
+A \textbf{Grothendieck category} $\mathcal{A}$ is an abelian category satisfying the following conditions:
+
+\begin{enumerate}
+    \item $\mathcal{A}$ is an \textbf{abelian category}.
+
+    \item $\mathcal{A}$ has \textbf{arbitrary (possibly infinite) coproducts}, i.e. for every family of objects $(X_i)_{i \in I}$, the coproduct
+    \[
+    \bigoplus_{i \in I} X_i
+    \]
+    exists in $\mathcal{A}$.
+
+    \item $\mathcal{A}$ satisfies \textbf{AB5}:
+
+    filtered colimits (direct limits) of short exact sequences are exact. That is, given a directed system of short exact sequences
+    \[
+    0 \to A_i \to B_i \to C_i \to 0,
+    \]
+    the induced sequence
+    \[
+    0 \to \varinjlim A_i \to \varinjlim B_i \to \varinjlim C_i \to 0
+    \]
+    is also exact.
+
+    \item $\mathcal{A}$ has a \textbf{generator}. That is, there exists an object $G \in \mathcal{A}$ such that the functor
+    \[
+    \operatorname{Hom}(G,-): \mathcal{A} \to \mathbf{Set}
+    \]
+    is faithful.
+\end{enumerate}
+
+\subsection{Generator Condition (Equivalent Form)}
+
+An object $G \in \mathcal{A}$ is a generator if and only if for every object $X \in \mathcal{A}$, there exists a set $I$ and an epimorphism
+\[
+G^{(I)} \twoheadrightarrow X,
+\]
+where
+\[
+G^{(I)} = \bigoplus_{i \in I} G
+\]
+is the coproduct of copies of $G$, indexed by the set $I$.
+
+\subsection{Remarks}
+
+\begin{itemize}
+    \item The AB5 condition implies that filtered colimits behave well with respect to exact sequences.
+
+    \item Coproducts in $\mathcal{A}$ generalize direct sums in module categories.
+
+    \item The existence of a generator ensures that every object in the category can be ``built'' from a single object via coproducts and quotients.
+\end{itemize}
+
+\section{Basic Definitions Used in Grothendieck Categories}
+
+\subsection{Abelian Categories}
+
+A category $\mathcal{C}$ is called \textbf{abelian} if:
+
+\begin{enumerate}
+    \item $\mathcal{C}$ is \textbf{preadditive}, i.e. each hom-set $\operatorname{Hom}(A,B)$ is an abelian group and composition is bilinear.
+
+    \item $\mathcal{C}$ has a \textbf{zero object}, denoted $0$, which is both initial and terminal.
+
+    \item $\mathcal{C}$ has all \textbf{binary biproducts} (direct sums) $A \oplus B$.
+
+    \item $\mathcal{C}$ has all \textbf{kernels} and \textbf{cokernels}.
+
+    \item Every monomorphism and epimorphism is \textbf{normal}, i.e.
+    \begin{itemize}
+        \item every monomorphism is a kernel of some morphism,
+        \item every epimorphism is a cokernel of some morphism.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Coproducts}
+
+Let $\mathcal{C}$ be a category and let $X_1, X_2$ be objects of $\mathcal{C}$.
+
+A \textbf{coproduct} of $X_1$ and $X_2$ is an object
+\[
+X_1 \sqcup X_2
+\]
+together with morphisms
+\[
+i_1: X_1 \to X_1 \sqcup X_2,
+\qquad
+i_2: X_2 \to X_1 \sqcup X_2,
+\]
+satisfying the following universal property:
+
+For every object $Y$ and morphisms
+\[
+f_1: X_1 \to Y,
+\qquad
+f_2: X_2 \to Y,
+\]
+there exists a unique morphism
+\[
+f: X_1 \sqcup X_2 \to Y
+\]
+such that the diagram commutes, i.e.
+\[
+f_1 = f \circ i_1,
+\qquad
+f_2 = f \circ i_2.
+\]
+
+\subsection{Universal Property Diagram}
+
+\[
+\begin{tikzcd}
+X_1 \arrow[r, "i_1"] \arrow[dr, "f_1"'] & X_1 \sqcup X_2 \arrow[d, "f"] & X_2 \arrow[l, "i_2"'] \arrow[dl, "f_2"] \\
+& Y &
+\end{tikzcd}
+\]
+
+\subsection{Notation}
+
+The coproduct of $X_1$ and $X_2$ is often written as:
+\[
+X_1 \sqcup X_2
+\quad \text{or} \quad
+X_1 \oplus X_2
+\quad \text{or} \quad
+X_1 + X_2.
+\]
+
+In abelian categories, coproducts and products coincide for finite families, and are called \textbf{biproducts}.
+
+\subsection{Direct limits of short exact sequence}
+
+Let $\{0 \to A_i \to B_i \to C_i \to 0\}_{i \in I}$ be a directed system of short exact sequences in an abelian category $\mathcal{A}$, indexed by a directed set $I$.
+Taking direct limits (colimits) gives the induced sequence
+\[
+0 \longrightarrow \varinjlim_{i \in I} A_i
+\longrightarrow \varinjlim_{i \in I} B_i
+\longrightarrow \varinjlim_{i \in I} C_i
+\longrightarrow 0.
+\]
+In a Grothendieck category (AB5), this sequence is again short exact.
+Let $I$ be a directed set and let
+\[
+\left\{0 \to A_i \xrightarrow{f_i} B_i \xrightarrow{g_i} C_i \to 0 \right\}_{i \in I}
+\]
+be a directed system of short exact sequences in an abelian category $\mathcal{A}$.
+
+For each $i \le j$ in $I$, assume we have compatible morphisms
+\[
+\alpha_{ij}: A_i \to A_j, \quad
+\beta_{ij}: B_i \to B_j, \quad
+\gamma_{ij}: C_i \to C_j
+\]
+such that all structure maps commute with the short exact sequences, i.e.
+\[
+\beta_{ij} \circ f_i = f_j \circ \alpha_{ij},
+\qquad
+\gamma_{ij} \circ g_i = g_j \circ \beta_{ij}.
+\]
+
+\subsection*{Step 1: Form the direct limits}
+
+Take direct limits in $\mathcal{A}$:
+\[
+A := \varinjlim_{i \in I} A_i,
+\qquad
+B := \varinjlim_{i \in I} B_i,
+\qquad
+C := \varinjlim_{i \in I} C_i.
+\]
+
+Let the canonical maps be
+\[
+\alpha_i: A_i \to A,
+\qquad
+\beta_i: B_i \to B,
+\qquad
+\gamma_i: C_i \to C.
+\]
+
+\subsection*{Step 2: Induced morphisms}
+
+By the universal property of colimits, the maps $f_i$ induce a unique morphism
+\[
+f := \varinjlim f_i : A \to B
+\]
+such that
+\[
+f \circ \alpha_i = \beta_i \circ f_i \quad \text{for all } i \in I.
+\]
+
+Similarly, the maps $g_i$ induce
+\[
+g := \varinjlim g_i : B \to C
+\]
+such that
+\[
+g \circ \beta_i = \gamma_i \circ g_i.
+\]
+
+\subsection*{Step 3: Resulting sequence}
+
+We obtain an induced sequence
+\[
+A \xrightarrow{f} B \xrightarrow{g} C.
+\]
+
+\subsection*{Step 4: Exactness after taking limits}
+
+In general abelian categories, the sequence need not be exact.
+
+However, if $\mathcal{A}$ is a Grothendieck category (i.e. satisfies AB5), then filtered colimits are exact, and we obtain a short exact sequence:
+\[
+0 \to \varinjlim A_i \xrightarrow{\;\varinjlim f_i\;} \varinjlim B_i \xrightarrow{\;\varinjlim g_i\;} \varinjlim C_i \to 0.
+\]
+
+\subsection*{Summary}
+
+The process is:
+\[
+\text{direct system of SES}
+\;\Longrightarrow\;
+\text{take colimits objectwise}
+\;\Longrightarrow\;
+\text{induced sequence}
+\;\Longrightarrow\;
+\text{short exact sequence (in AB5 categories)}.
+\]
+
+\section{Examples of Grothendieck Categories}
+
+\subsection{Abelian Groups}
+
+The category $\mathbf{Ab}$ of abelian groups is a Grothendieck category.
+
+\begin{itemize}
+    \item It is an abelian category.
+    \item It has arbitrary coproducts (direct sums of abelian groups).
+    \item It satisfies AB5: filtered colimits of short exact sequences of abelian groups are exact.
+    \item It has a generator: the group $\mathbb{Z}$.
+\end{itemize}
+
+Indeed, for any abelian group $A$, there exists a set $I$ and a surjection
+\[
+\mathbb{Z}^{(I)} \twoheadrightarrow A,
+\]
+so $\mathbb{Z}$ is a generator.
+
+\subsection{Modules over a Ring}
+
+Let $R$ be an associative ring with identity (not necessarily commutative). The category
+\[
+\operatorname{Mod}(R)
+\]
+of right (or left) $R$-modules is a Grothendieck category.
+
+\begin{itemize}
+    \item It is abelian.
+    \item It has arbitrary coproducts (direct sums of modules).
+    \item It satisfies AB5.
+    \item It has a generator: the free module $R$.
+\end{itemize}
+
+For every module $M$, there exists a set $I$ and an epimorphism
+\[
+R^{(I)} \twoheadrightarrow M.
+\]
+
+\subsection{Sheaves of Abelian Groups}
+
+Let $X$ be a topological space. The category
+\[
+\mathbf{Sh}(X)
+\]
+of sheaves of abelian groups on $X$ is a Grothendieck category.
+
+More generally, for any ring $R$, the category of sheaves of $R$-modules on $X$ is also Grothendieck.
+
+\begin{itemize}
+    \item It is abelian.
+    \item It has arbitrary coproducts (computed sectionwise).
+    \item It satisfies AB5 (filtered colimits are computed stalkwise and preserve exactness).
+    \item It has a generator (constructed from skyscraper sheaves).
+\end{itemize}
+
+\subsection{Sheaves on a Ringed Space}
+
+Let $(X, \mathcal{O}_X)$ be a ringed space. Then the category
+\[
+\mathcal{O}_X\text{-Mod}
+\]
+of sheaves of $\mathcal{O}_X$-modules is a Grothendieck category.
+
+\begin{itemize}
+    \item Abelian structure comes from sheaf morphisms.
+    \item Coproducts and limits are computed sectionwise.
+    \item AB5 holds via stalkwise exactness.
+    \item A generator exists via direct sums of structure sheaves over open sets.
+\end{itemize}
+
+\subsection{Quasi-Coherent Sheaves}
+
+Let $V$ be an algebraic variety, scheme, or algebraic stack. The category
+\[
+\operatorname{Qcoh}(V)
+\]
+of quasi-coherent sheaves is a Grothendieck category.
+
+\begin{itemize}
+    \item Abelian structure depends on the geometry of $V$.
+    \item Arbitrary coproducts exist.
+    \item Filtered colimits are exact.
+    \item A generator exists locally via affine charts.
+\end{itemize}
+
+\subsection{Sheaves on a Site}
+
+Let $(\mathcal{C}, J)$ be a small site, i.e. a small category $\mathcal{C}$ equipped with a Grothendieck topology $J$.
+
+Then the category
+\[
+\mathbf{Sh}(\mathcal{C}, J)
+\]
+
+of sheaves of abelian groups on the site is a Grothendieck category.
+
+\begin{itemize}
+    \item It is abelian.
+    \item It has all coproducts.
+    \item It satisfies AB5.
+    \item It has a generator given by representable sheaves (via Yoneda embedding and sheafification).
+\end{itemize}
